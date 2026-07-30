@@ -1,8 +1,28 @@
 aid: mcp-manager
 name: MCP Manager
-description: 'MCP Manager is a company surfaced as a portfolio company of bessemer-venture-partners and
-  added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: >-
+  MCP Manager, by Usercentrics, is an enterprise governance and security layer for the
+  Model Context Protocol (MCP). It sits as a governed gateway between AI clients (Claude,
+  ChatGPT, Cursor, and custom agents) and MCP servers — SaaS tools, internal databases,
+  and custom servers — authenticating every request, brokering per-user or shared
+  identities, inspecting traffic against gateway rules (regex, Microsoft Presidio, and
+  custom rule engines) for PII and prompt-injection defense, provisioning tool allowlists,
+  and logging every call with full attribution plus OpenTelemetry export to any SIEM. It
+  ships an Admin API and MCP server (closed beta) that manage servers, gateways,
+  identities, hosts, teams, roles, and logs over both MCP tools and a REST twin.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://mcpmanager.ai/wp-content/uploads/mcp-manager-og-share-image.png
 url: https://raw.githubusercontent.com/api-evangelist/mcp-manager/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,11 +32,36 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-- Unknown
-apis: []
+- MCP
+- Model Context Protocol
+- AI Governance
+- API Gateway
+- Security
+- Observability
+- DLP
+- Identity
+- RBAC
+- Enterprise
+apis:
+- name: MCP Manager Admin API
+  description: >-
+    Control-plane surface that lets an agent or script manage MCP Manager configuration —
+    servers, gateways, identities, hosts, teams, roles, logs, and integrations — with the
+    same actions as the app, scoped by role capabilities. 64 operations across seven domains,
+    each defined once and generated into both an MCP tool and a REST endpoint under
+    /api/v1/mcpm-admin. Closed beta (entitlement ff-mcpm-admin).
+  humanURL: https://docs.mcpmanager.ai/admin-api/overview
+  baseURL: https://app.mcpmanager.ai/api/v1/mcpm-admin
+  properties:
+  - type: APIReference
+    url: https://docs.mcpmanager.ai/admin-api/reference/overview
+  - type: MCPServer
+    url: mcp/mcp-manager-mcp.yml
+  - type: Authentication
+    url: authentication/mcp-manager-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +70,58 @@ maintainers:
 common:
 - type: Website
   url: https://mcpmanager.ai/
+- type: DeveloperPortal
+  url: https://docs.mcpmanager.ai/
+- type: Documentation
+  url: https://docs.mcpmanager.ai/
+- type: APIReference
+  url: https://docs.mcpmanager.ai/admin-api/reference/overview
+- type: GettingStarted
+  url: https://docs.mcpmanager.ai/get-started/introduction
+- type: Blog
+  url: https://mcpmanager.ai/categories/blog/
+- type: Pricing
+  url: https://mcpmanager.ai/pricing-plans/
+- type: SignUp
+  url: https://mcpmanager.ai/free-trial/
+- type: TermsOfService
+  url: https://mcpmanager.ai/terms-of-use/
+- type: PrivacyPolicy
+  url: https://mcpmanager.ai/policy/
+- type: Roadmap
+  url: https://docs.mcpmanager.ai/admin-api/roadmap
+- type: StatusPage
+  url: https://status.mcpmanager.ai/
+- type: MCPServer
+  url: mcp/mcp-manager-mcp.yml
+- type: AgentSkill
+  url: skills/mcp-manager-skill.md
+- type: LLMsTxt
+  url: llms/mcp-manager-llms.txt
+- type: Authentication
+  url: authentication/mcp-manager-authentication.yml
+- type: Conventions
+  url: conventions/mcp-manager-conventions.yml
+- type: Idempotency
+  url: conventions/mcp-manager-conventions.yml
+- type: ErrorCatalog
+  url: errors/mcp-manager-problem-types.yml
+- type: Conformance
+  url: conformance/mcp-manager-conformance.yml
+- type: Compliance
+  url: security/mcp-manager-trust-center.yml
+- type: TrustCenter
+  url: security/mcp-manager-trust-center.yml
+- type: DomainSecurity
+  url: security/mcp-manager-domain-security.yml
+- type: Lifecycle
+  url: lifecycle/mcp-manager-lifecycle.yml
+- type: DataModel
+  url: data-model/mcp-manager-data-model.yml
+- type: Webhooks
+  url: asyncapi/mcp-manager-webhooks.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1
