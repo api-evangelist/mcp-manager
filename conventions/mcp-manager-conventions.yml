@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.mcpmanager.ai/admin-api/authentication.md
+docs: https://docs.mcpmanager.ai/admin-api/reference/overview
+api: MCP Manager Admin API (REST twin under /api/v1/mcpm-admin; mirrored as MCP tools)
+authentication:
+  style: bearer token (Authorization header)
+  schemes: [Personal Access Token (mcpm_pat_), OAuth 2.1]
+  see: authentication/mcp-manager-authentication.yml
+authorization:
+  model: per-operation capability gating (RBAC); workspace entitlement ff-mcpm-admin gates the whole surface
+idempotency:
+  supported: true
+  mechanism: idempotent-by-label
+  detail: >-
+    create_access_token is idempotent by label — if a valid token with the same
+    label already exists it returns that token's metadata with alreadyExisted:true
+    and token:null instead of minting a duplicate, so a provisioning pipeline can
+    re-run safely. A new label is required to mint a fresh secret.
+  source: https://docs.mcpmanager.ai/admin-api/authentication
+pagination:
+  style: thin-by-default detail opt-in
+  detail: >-
+    List and query operations return thin results by default; callers opt into
+    heavy detail (request/response bodies, full alert context) only for the specific
+    records they need so responses stay small. Log and alert queries (query_logs,
+    list_alerts) support filters and pagination.
+  see: errors/mcp-manager-problem-types.yml
+request_tracing:
+  correlation_id: true
+  detail: Every response carries a correlation id that can be quoted to support to trace a request.
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1/mcpm-admin
+error_envelope:
+  style: HTTP status codes; 400 messages name the offending field; MCP surface returns the same failures as tool errors
+  see: errors/mcp-manager-problem-types.yml
+secret_handling:
+  write_only_fields: [token secrets, identity header token values, OTel collector header values]
+  redaction: >-
+    Alert debug context is scrubbed at write time — authorization, cookie, set-cookie,
+    access_token, refresh_token, client_secret, password and similar keys are replaced
+    with [REDACTED] before storage.
+tool_annotations:
+  read_only_badge: true
+  destructive_badge: true
+  note: MCP tools carry Read-only / Destructive annotations mirrored to clients.
+observability:
+  log_forwarding: OpenTelemetry (OTLP/HTTP) logs and traces to any collector/SIEM
+  see: https://docs.mcpmanager.ai/enterprise/export-to-siem.md

@@ -1,0 +1,36 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.mcpmanager.ai/admin-api/authentication.md
+format: http-status
+api: MCP Manager Admin API
+envelope: >-
+  The REST surface returns standard HTTP status codes; the MCP surface surfaces the
+  same failures as tool errors. Every response carries a correlation id for tracing.
+  400 responses name the offending field in the message.
+problems:
+  - status: 200
+    title: Success
+    detail: Read or update completed.
+  - status: 201
+    title: Created
+    detail: A new resource was created (for example, an access token).
+  - status: 400
+    title: Bad Request
+    detail: Input failed schema validation — the message names the offending field.
+  - status: 401
+    title: Unauthorized
+    detail: >-
+      Missing or invalid bearer credential, or an OAuth token whose audience doesn't
+      match the admin resource.
+  - status: 403
+    title: Forbidden
+    detail: The workspace lacks the ff-mcpm-admin entitlement, or the role lacks the required capability ("Capability '<key>' is required.").
+  - status: 404
+    title: Not Found
+    detail: The target resource doesn't exist, or isn't yours (for example, another user's token).
+  - status: 500
+    title: Internal Server Error
+    detail: An unexpected failure; detail is logged under the correlation id, not returned.
+  - status: 503
+    title: Service Unavailable
+    detail: The entitlement check couldn't be completed ("Entitlement check failed").

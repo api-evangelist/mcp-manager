@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.mcpmanager.ai/skill.md
+skills:
+  - file: mcp-manager-skill.md
+    name: MCP Manager Skill
+    description: >-
+      Provider-published Agent Skill for building, deploying, and governing MCP
+      gateways and servers with MCP Manager — server types, identity schemes,
+      gateway rules/DLP, feature provisioning, headless-agent API tokens, and
+      troubleshooting. Saved verbatim from the vendor docs.
+    api: Admin API (docs.mcpmanager.ai/admin-api)
+    operations:
+      - whoami
+      - create_inbound_server
+      - create_gateway
+      - assign_server_to_gateway
+      - create_access_token

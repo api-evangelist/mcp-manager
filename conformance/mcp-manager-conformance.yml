@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.mcpmanager.ai/enterprise/security-and-compliance.md
+standards:
+  - id: oauth2.1
+    conforms: true
+    evidence: Admin MCP server is an OAuth 2.1 protected resource (docs/admin-api/authentication)
+  - id: rfc8707-resource-indicators
+    conforms: true
+    evidence: OAuth access tokens are audience-bound to the admin MCP resource per RFC 8707
+  - id: rfc9728-protected-resource-metadata
+    conforms: true
+    evidence: 401 challenge advertises protected-resource metadata per RFC 9728
+  - id: oidc
+    conforms: true
+    evidence: Enterprise SSO is standards-based OpenID Connect federated through Auth0
+  - id: scim2.0
+    conforms: true
+    evidence: SCIM 2.0 service provider (RFC 7643 / RFC 7644) for user/group provisioning
+  - id: opentelemetry
+    conforms: true
+    evidence: Log/trace forwarding over OTLP/HTTP to any OpenTelemetry collector or SIEM
+  - id: model-context-protocol
+    conforms: true
+    evidence: Gateway and Admin surfaces speak MCP (Streamable HTTP); governs MCP servers/clients
+compliance:
+  program_published: true
+  resource_center: https://app.mcpmanager.ai/enterprise
+  trust_center: https://trust.usercentrics.com/
+  certifications:
+    - SOC 2 Type 2 (2025)
+    - HIPAA
+    - ISO 27001:2022
+    - ISO 27701:2019
+    - TISAX Level 3
+  additional:
+    - Penetration test report
+    - CAIQ-Lite 4.0.3
+    - VSA-CORE
+    - Pre-signed DPA, NDA, BAA
+  note: >-
+    MCP Manager is built by Usercentrics; gated reports (SOC 2 Type II + HIPAA) are
+    obtained via the Usercentrics Trust Center Resources section.

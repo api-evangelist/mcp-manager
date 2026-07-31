@@ -1,0 +1,68 @@
+generated: '2026-07-20'
+method: derived
+source: https://docs.mcpmanager.ai/admin-api/reference/overview.md
+notes: >-
+  Entity-relationship graph derived from the Admin API operation domains and the
+  access-control model documented at docs.mcpmanager.ai. No OpenAPI is published;
+  entities and relationships are read from the object/reference docs.
+entities:
+  - name: Server
+    label: Inbound MCP server
+    kinds: [remote, managed, workstation]
+    ops: [create_inbound_server, get_inbound_server, list_inbound_servers, rename_inbound_server, enable_inbound_server, disable_inbound_server, delete_inbound_server]
+  - name: Identity
+    label: Credential a server authenticates with (per-user or shared)
+    ops: [add_identity, list_identities, delete_identity, enable_identity, disable_identity, set_identity_availability, set_identity_headers]
+  - name: Gateway
+    label: One governed URL aggregating many upstream servers
+    ops: [create_gateway, get_gateway, list_gateways, rename_gateway, enable_gateway, disable_gateway, archive_gateway, issue_gateway_token]
+  - name: GatewayAssignment
+    label: A server assigned to a gateway with an identity scheme
+    ops: [assign_server_to_gateway, list_gateway_assignments, modify_gateway_assignment, enable_gateway_assignment, disable_gateway_assignment, remove_gateway_assignment]
+  - name: Host
+    label: An app/agent host and its gateway connections
+    ops: [create_host, rename_host, enable_host, disable_host, delete_host, list_hosts]
+  - name: Connection
+    label: A connection between a host and a gateway
+    ops: [list_connections, get_connection, enable_connection, disable_connection]
+  - name: Team
+    label: Grants users access to gateways
+    ops: [create_team, rename_team, list_teams, delete_team, assign_team_to_gateway, remove_team_from_gateway]
+  - name: Role
+    label: Grants capabilities
+    ops: [create_role, modify_role, list_roles, delete_role]
+  - name: Capability
+    label: A grantable permission key
+    ops: [list_capabilities]
+  - name: User
+    label: A person in the workspace
+    ops: [invite_user, deactivate_user, list_users, set_user_role, set_user_teams]
+  - name: AccessToken
+    label: Admin Personal Access Token
+    ops: [create_access_token, list_access_tokens, revoke_access_token]
+  - name: Log
+    label: AI-usage MCP call log entry
+    ops: [query_logs]
+  - name: Alert
+    ops: [list_alerts, get_alert]
+  - name: OtelConfiguration
+    label: OpenTelemetry log/trace forwarding config
+    ops: [get_otel_configuration, set_otel_configuration]
+relationships:
+  - {from: Gateway, type: has_many, to: GatewayAssignment}
+  - {from: GatewayAssignment, type: belongs_to, to: Server, via: server}
+  - {from: GatewayAssignment, type: belongs_to, to: Gateway, via: gateway}
+  - {from: GatewayAssignment, type: has_one, to: Identity, via: identity_scheme}
+  - {from: Server, type: has_many, to: Identity}
+  - {from: Gateway, type: has_many, to: Team, via: provisioning}
+  - {from: Team, type: has_many, to: User}
+  - {from: Host, type: has_many, to: Connection}
+  - {from: Connection, type: belongs_to, to: Host, via: host}
+  - {from: Connection, type: belongs_to, to: Gateway, via: gateway}
+  - {from: User, type: has_one, to: Role}
+  - {from: User, type: has_many, to: Team}
+  - {from: Role, type: has_many, to: Capability, via: grants}
+  - {from: AccessToken, type: belongs_to, to: User}
+access_rule: >-
+  A user's access is the intersection of their single Role (capabilities: what you can do)
+  and their many Teams (gateways: which you can reach).

@@ -1,0 +1,43 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.mcpmanager.ai/admin-api/authentication.md
+docs: https://docs.mcpmanager.ai/admin-api/authentication
+summary:
+  types: [http, oauth2]
+  bearer_formats: [personal-access-token, oauth2-jwt]
+  oauth2_flows: [authorizationCode]
+  authorization_model: capability-gating (RBAC) + workspace entitlement (ff-mcpm-admin)
+schemes:
+  - name: PersonalAccessToken
+    type: http
+    scheme: bearer
+    header: Authorization
+    prefix: mcpm_pat_
+    format: mcpm_pat_ followed by 64 hex chars (32 random bytes)
+    storage_at_rest: SHA-256 hash only; secret shown once at creation, unrecoverable
+    default_ttl_days: 90
+    configurable_ttl_days: 1-90 (0 = never expire)
+    scope: acts as the creating user (carries user, role, capabilities)
+    idempotent_creation: true  # create_access_token is idempotent by label
+    source: https://docs.mcpmanager.ai/admin-api/authentication
+  - name: OAuth2.1
+    type: oauth2
+    flows:
+      - flow: authorizationCode
+        notes: >-
+          Admin MCP server is an OAuth 2.1 protected resource. A credential-less
+          client receives 401 with a WWW-Authenticate header advertising the
+          protected-resource metadata document (RFC 9728); the client then runs
+          the authorization flow.
+    audience_binding: RFC 8707 — access token aud claim must include ${ROOT_URL}/mcpm-admin/mcp
+    subject: token sub claim carries the resolved MCP Manager identity
+    source: https://docs.mcpmanager.ai/admin-api/authentication
+authorization:
+  entitlement: ff-mcpm-admin (plan-level; checked before authn/capability; 403 if missing, 503 if check fails)
+  capability_gating: every operation enforces the same capability as the equivalent app action
+  no_capability_ops: [whoami, list_capabilities, create_access_token, list_access_tokens, revoke_access_token]
+  capabilities_reference: https://docs.mcpmanager.ai/deployment/rbac-and-roles/capabilities
+enterprise_sso:
+  protocol: OpenID Connect (OIDC) federated through Auth0
+  provisioning: SCIM 2.0 (RFC 7643 / RFC 7644)
+  source: https://docs.mcpmanager.ai/enterprise/sso.md

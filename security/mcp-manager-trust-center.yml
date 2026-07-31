@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.mcpmanager.ai/enterprise/security-and-compliance.md
+url: https://app.mcpmanager.ai/enterprise
+trust_center: https://trust.usercentrics.com/
+built_by: Usercentrics
+certifications:
+  - SOC 2 Type 2
+  - HIPAA
+  - ISO 27001:2022
+  - ISO 27701:2019
+  - TISAX Level 3
+resources:
+  - SOC 2 Type 2 + HIPAA report (2025)
+  - ISO 27001:2022 & ISO 27701:2019 certificates
+  - TISAX Level 3 assessment result
+  - Penetration test report
+  - Security questionnaires (CAIQ-Lite 4.0.3, VSA-CORE)
+  - ISMS policies (information security, BCM, risk, incident, cryptography)
+  - Live security controls status
+  - Subprocessor list (with change notifications)
+  - Security update announcements (subscribable)
+legal_documents:
+  dpa: https://app.mcpmanager.ai/enterprise/dpa
+  nda: https://app.mcpmanager.ai/enterprise/nda
+  baa: available on select enterprise plans (HIPAA covered entities)
+ip_ranges:
+  human: https://app.mcpmanager.ai/enterprise/ip-ranges
+  json: https://app.mcpmanager.ai/enterprise/ip-ranges.json
+evidence:
+  - source: https://docs.mcpmanager.ai/enterprise/security-and-compliance.md
+    keywords: [soc 2, iso 27001, iso 27701, tisax, hipaa, trust center, dpa, baa]

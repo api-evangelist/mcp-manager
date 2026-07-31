@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.mcpmanager.ai/advanced/building-a-custom-rule-engine.md
+spec_type: Webhooks
+notes: >-
+  MCP Manager publishes no AsyncAPI document. Its event/outbound surface is the
+  Custom Rule Engine webhook: the gateway calls a customer-hosted HTTPS endpoint
+  inline on the request and/or response leg of a tool call, and the webhook returns
+  a verdict. Separately, MCP Manager pushes structured logs/traces outbound over
+  OpenTelemetry (OTLP/HTTP). No fabricated event surface.
+webhooks:
+  - name: custom-rule-engine
+    direction: outbound (MCP Manager -> your HTTPS endpoint)
+    docs: https://docs.mcpmanager.ai/advanced/building-a-custom-rule-engine
+    transport: HTTPS POST (HTTPS-only; private IPs rejected)
+    hooks: [request, response]
+    request_envelope: MCP tool-call payload plus context
+    verdicts: [pass, block, modify, error]
+    modify_field: modifiedPayload.body (validated)
+    timeout_seconds: 30
+    retries: true
+    max_payload: 16 MiB
+    failure_mode: configurable (default Block / fail-closed on timeout)
+    example: Express webhook (in docs)
+  - name: opentelemetry-forwarding
+    direction: outbound (MCP Manager -> OTLP/HTTP collector or SIEM)
+    docs: https://docs.mcpmanager.ai/enterprise/export-to-siem
+    payload: structured MCP request logs and traces
+    integrations: [Datadog, Grafana Cloud, Honeycomb, New Relic, Splunk (via collector), self-hosted OTel Collector]

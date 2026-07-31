@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.mcpmanager.ai/admin-api/roadmap.md
+api: MCP Manager Admin API
+versioning:
+  scheme: uri-path
+  current: v1
+  base_path: /api/v1/mcpm-admin
+  docs: https://docs.mcpmanager.ai/admin-api/overview
+availability:
+  stage: closed-beta
+  entitlement: ff-mcpm-admin
+  note: Admin API and MCP server are in closed beta ahead of general availability.
+roadmap:
+  url: https://docs.mcpmanager.ai/admin-api/roadmap
+  planned:
+    - Reporting tools and a richer whoami
+    - Gateway rules and custom rule engines over the Admin API
+    - Per-assignment feature provisioning
+    - Admin audit log (configuration-change log, separate from AI-usage call log)
+    - Multi-workspace targeting
+    - Entitlement queries
+    - Downloadable CLI (infrastructure-as-code workflows)
+    - Docs lookups through the admin server
+  dates: not committed
+status_page: https://status.mcpmanager.ai/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation policy or RFC 8594 Sunset support found as of this pass.
+deprecated_operations: []
