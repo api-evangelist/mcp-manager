@@ -2,98 +2,117 @@ generated: '2026-07-20'
 method: searched
 status: published
 source: https://docs.mcpmanager.ai/admin-api/overview.md
-notes: >-
-  MCP Manager publishes two first-party MCP servers. (1) The Admin (control-plane)
-  MCP server exposes 64 operations across seven domains; every operation is defined
-  once and generated into BOTH an MCP tool and a REST endpoint under
-  /api/v1/mcpm-admin, so the two surfaces never diverge. It is in CLOSED BETA, gated
-  by the workspace entitlement ff-mcpm-admin, and the Connect URL is per-workspace.
-  (2) A public docs MCP server serves the documentation to agents (no auth).
+notes: MCP Manager publishes two first-party MCP servers. (1) The Admin (control-plane) MCP server exposes
+  64 operations across seven domains; every operation is defined once and generated into BOTH an MCP tool
+  and a REST endpoint under /api/v1/mcpm-admin, so the two surfaces never diverge. It is in CLOSED BETA,
+  gated by the workspace entitlement ff-mcpm-admin, and the Connect URL is per-workspace. (2) A public
+  docs MCP server serves the documentation to agents (no auth).
 servers:
-  - name: MCP Manager Admin
-    transport: http
-    url: per-workspace Connect URL (Settings -> MCP & API); REST twin at https://<host>/api/v1/mcpm-admin
-    availability: closed-beta
-    entitlement: ff-mcpm-admin
-    auth:
-      - Personal Access Token (Authorization: Bearer mcpm_pat_...)
-      - OAuth 2.1 (audience-bound per RFC 8707; protected-resource metadata per RFC 9728)
-    authorization: per-operation capability gating (same capability as the equivalent app action)
-    annotations: tools carry Read-only / Destructive badges; list/query return thin results by default
-  - name: MCP Manager Docs
-    transport: http
-    url: hosted docs MCP server (public, no authentication)
-    availability: public
-    source: https://docs.mcpmanager.ai/get-started/use-docs-with-ai.md
+- name: MCP Manager Admin
+  transport: http
+  url: per-workspace Connect URL (Settings -> MCP & API); REST twin at https://<host>/api/v1/mcpm-admin
+  availability: closed-beta
+  entitlement: ff-mcpm-admin
+  auth:
+  - Personal Access Token (Authorization: Bearer mcpm_pat_...)
+  - OAuth 2.1 (audience-bound per RFC 8707; protected-resource metadata per RFC 9728)
+  authorization: per-operation capability gating (same capability as the equivalent app action)
+  annotations: tools carry Read-only / Destructive badges; list/query return thin results by default
+- name: MCP Manager Docs
+  transport: http
+  url: hosted docs MCP server (public, no authentication)
+  availability: public
+  source: https://docs.mcpmanager.ai/get-started/use-docs-with-ai.md
 domains:
-  - {domain: Account & access tokens, operations: 5}
-  - {domain: Servers, operations: 7}
-  - {domain: Identities, operations: 7}
-  - {domain: Gateways, operations: 17}
-  - {domain: People, teams & roles, operations: 13}
-  - {domain: Hosts, operations: 10}
-  - {domain: Logging, operations: 5}
+- domain: Account & access tokens
+  operations: 5
+- domain: Servers
+  operations: 7
+- domain: Identities
+  operations: 7
+- domain: Gateways
+  operations: 17
+- domain: People
+  teams & roles: null
+  operations: 13
+- domain: Hosts
+  operations: 10
+- domain: Logging
+  operations: 5
 tools:
-  - {name: whoami, capability: none}
-  - {name: list_capabilities, capability: none}
-  - {name: create_access_token, capability: none}
-  - {name: list_access_tokens, capability: none}
-  - {name: revoke_access_token, capability: none}
-  - {name: create_inbound_server, capability: basicServerManagement}
-  - {name: get_inbound_server}
-  - {name: list_inbound_servers}
-  - {name: rename_inbound_server}
-  - {name: enable_inbound_server}
-  - {name: disable_inbound_server}
-  - {name: delete_inbound_server}
-  - {name: add_identity}
-  - {name: list_identities}
-  - {name: delete_identity}
-  - {name: enable_identity}
-  - {name: disable_identity}
-  - {name: set_identity_availability}
-  - {name: set_identity_headers}
-  - {name: create_gateway}
-  - {name: get_gateway}
-  - {name: list_gateways}
-  - {name: rename_gateway}
-  - {name: enable_gateway}
-  - {name: disable_gateway}
-  - {name: archive_gateway}
-  - {name: issue_gateway_token}
-  - {name: assign_server_to_gateway}
-  - {name: list_gateway_assignments}
-  - {name: modify_gateway_assignment}
-  - {name: enable_gateway_assignment}
-  - {name: disable_gateway_assignment}
-  - {name: remove_gateway_assignment}
-  - {name: assign_team_to_gateway}
-  - {name: remove_team_from_gateway}
-  - {name: invite_user}
-  - {name: deactivate_user}
-  - {name: list_users}
-  - {name: set_user_role}
-  - {name: set_user_teams}
-  - {name: create_role}
-  - {name: modify_role}
-  - {name: list_roles}
-  - {name: delete_role}
-  - {name: create_team}
-  - {name: rename_team}
-  - {name: list_teams}
-  - {name: delete_team}
-  - {name: create_host}
-  - {name: rename_host}
-  - {name: enable_host}
-  - {name: disable_host}
-  - {name: delete_host}
-  - {name: list_hosts}
-  - {name: list_connections}
-  - {name: get_connection}
-  - {name: enable_connection}
-  - {name: disable_connection}
-  - {name: query_logs, capability: View and export logs}
-  - {name: list_alerts}
-  - {name: get_alert}
-  - {name: get_otel_configuration}
-  - {name: set_otel_configuration}
+- name: whoami
+  capability: none
+- name: list_capabilities
+  capability: none
+- name: create_access_token
+  capability: none
+- name: list_access_tokens
+  capability: none
+- name: revoke_access_token
+  capability: none
+- name: create_inbound_server
+  capability: basicServerManagement
+- name: get_inbound_server
+- name: list_inbound_servers
+- name: rename_inbound_server
+- name: enable_inbound_server
+- name: disable_inbound_server
+- name: delete_inbound_server
+- name: add_identity
+- name: list_identities
+- name: delete_identity
+- name: enable_identity
+- name: disable_identity
+- name: set_identity_availability
+- name: set_identity_headers
+- name: create_gateway
+- name: get_gateway
+- name: list_gateways
+- name: rename_gateway
+- name: enable_gateway
+- name: disable_gateway
+- name: archive_gateway
+- name: issue_gateway_token
+- name: assign_server_to_gateway
+- name: list_gateway_assignments
+- name: modify_gateway_assignment
+- name: enable_gateway_assignment
+- name: disable_gateway_assignment
+- name: remove_gateway_assignment
+- name: assign_team_to_gateway
+- name: remove_team_from_gateway
+- name: invite_user
+- name: deactivate_user
+- name: list_users
+- name: set_user_role
+- name: set_user_teams
+- name: create_role
+- name: modify_role
+- name: list_roles
+- name: delete_role
+- name: create_team
+- name: rename_team
+- name: list_teams
+- name: delete_team
+- name: create_host
+- name: rename_host
+- name: enable_host
+- name: disable_host
+- name: delete_host
+- name: list_hosts
+- name: list_connections
+- name: get_connection
+- name: enable_connection
+- name: disable_connection
+- name: query_logs
+  capability: View and export logs
+- name: list_alerts
+- name: get_alert
+- name: get_otel_configuration
+- name: set_otel_configuration
+deployment:
+  mode: unclear
+  verified: searched
+  tools: 63
+  checked: '2026-08-12'
+  source: catalog MCP census
