@@ -10,6 +10,17 @@ description: >-
   and logging every call with full attribution plus OpenTelemetry export to any SIEM. It
   ships an Admin API and MCP server (closed beta) that manage servers, gateways,
   identities, hosts, teams, roles, and logs over both MCP tools and a REST twin.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
