@@ -64,6 +64,108 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-MCP Manager is a company surfaced as a portfolio company of bessemer-venture-partners and added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a lead awaiting the enrichment pipeline.
+MCP Manager, by Usercentrics, is an enterprise governance and security layer for the Model Context Protocol (MCP). It sits as a governed gateway between AI clients (Claude, ChatGPT, Cursor, and custom agents) and MCP servers — SaaS tools, internal databases, and custom servers — authenticating every request, brokering per-user or shared identities, inspecting traffic against gateway rules (regex, Microsoft Presidio, and custom rule engines) for PII and prompt-injection defense, provisioning tool allowlists, and logging every call with full attribution plus OpenTelemetry export to any SIEM. It ships an Admin API and MCP server (closed beta) that manage servers, gateways, identities, hosts, teams, roles, and logs over both MCP tools and a REST twin.
 
-Backed by: bessemer-venture-partners — https://mcpmanager.ai/
+**Areas:** Company · MCP · AI Governance · API Gateway · Security · Observability · DLP · Identity · RBAC · Enterprise
+
+## MCP Manager on APIs.io
+
+Everything profiled for MCP Manager is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/mcp-manager/](https://apis.io/providers/mcp-manager/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [MCP Manager Admin API](https://apis.io/apis/mcp-manager/mcp-manager-admin-api/) — Control-plane surface that lets an agent or script manage MCP Manager configuration — servers, gateways, identities, hosts, teams, roles, logs, and…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Mcp Manager Webhooks](https://apis.io/asyncapis/mcp-manager/mcp-manager-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [mcp-manager-mcp.yml](https://apis.io/servers/mcp-manager/mcp-manager-mcp-yml/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Mcp Manager Authentication](https://apis.io/security/mcp-manager/mcp-manager-authentication/)
+- [Mcp Manager Domain Security](https://apis.io/security/mcp-manager/mcp-manager-domain-security/)
+- [Mcp Manager Trust Center](https://apis.io/security/mcp-manager/mcp-manager-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://mcpmanager.ai/)
+- [Documentation](https://docs.mcpmanager.ai/)
+- [Getting started](https://docs.mcpmanager.ai/get-started/introduction)
+- [API reference](https://docs.mcpmanager.ai/admin-api/reference/overview)
+- [Pricing](https://mcpmanager.ai/pricing-plans/)
+- [Sign up](https://mcpmanager.ai/free-trial/)
+- [Blog](https://mcpmanager.ai/categories/blog/)
+- [Terms of service](https://mcpmanager.ai/terms-of-use/)
+- [Privacy policy](https://mcpmanager.ai/policy/)
+- [Status](https://status.mcpmanager.ai/)
+
+## API Evangelist rating
+
+**Kin Score 49.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.7 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 59.5 |
+| Access clarity | 60.5 |
+
+**Agent readiness 32.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/mcp-manager/](https://apis.io/providers/mcp-manager/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for MCP Manager: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/mcp-manager/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
